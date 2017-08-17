@@ -102,8 +102,23 @@ local do_test = function(fn) {
 		throw format(message, value.tostring());
 	},
 
+	is_typeof = function(value, name, message = "Failled to assert that %s is typeof %s") {
+		if (typeof(value) == name) return;
+		throw format(message, value.tostring(), name);
+	}
+
+	is_not_typeof = function(value, name, message = "Failled to assert that %s is not typeof %s") {
+		if (typeof(value) != name) return;
+		throw format(message, value.tostring(), name);
+	}
+
 	is_integer = function(value, message = "Failed to assert that %s is an integer") {
 		if (typeof(value) == "integer") return;
+		throw format(message, value.tostring());
+	},
+
+	is_not_integer = function(value, message = "Failed to assert that %s is not an integer") {
+		if (typeof(value) != "integer") return;
 		throw format(message, value.tostring());
 	},
 
@@ -112,8 +127,18 @@ local do_test = function(fn) {
 		throw format(message, value.tostring());
 	},
 
+	is_not_float = function(value, message = "Failed to assert that %s is not a float") {
+		if (typeof(value) != "float") return;
+		throw format(message, value.tostring());
+	},
+
 	is_string = function(value, message = "Failed to assert that %s is a string") {
 		if (typeof(value) == "string") return;
+		throw format(message, value.tostring());
+	},
+
+	is_not_string = function(value, message = "Failed to assert that %s is not a string") {
+		if (typeof(value) != "string") return;
 		throw format(message, value.tostring());
 	},
 
@@ -122,8 +147,18 @@ local do_test = function(fn) {
 		throw format(message, value.tostring());
 	},
 
+	is_not_null = function(value, message = "Failed to assert that %s is not null") {
+		if (typeof(value) != "null") return;
+		throw format(message, value.tostring());
+	},
+
 	is_bool = function(value, message = "Failed to assert that %s is a bool") {
 		if (typeof(value) == "bool") return;
+		throw format(message, value.tostring());
+	},
+
+	is_not_bool = function(value, message = "Failed to assert that %s is not a bool") {
+		if (typeof(value) != "bool") return;
 		throw format(message, value.tostring());
 	},
 
@@ -132,8 +167,18 @@ local do_test = function(fn) {
 		throw format(message, value.tostring());
 	},
 
+	is_not_table = function(value, message = "Failed to assert that %s is not a table") {
+		if (typeof(value) != "table") return;
+		throw format(message, value.tostring());
+	},
+
 	is_array = function(value, message = "Failed to assert that %s is an array") {
 		if (typeof(value) == "array") return;
+		throw format(message, value.tostring());
+	},
+
+	is_not_array = function(value, message = "Failed to assert that %s is not an array") {
+		if (typeof(value) != "array") return;
 		throw format(message, value.tostring());
 	},
 
@@ -142,8 +187,18 @@ local do_test = function(fn) {
 		throw format(message, value.tostring());
 	},
 
+	is_not_function = function(value, message = "Failed to assert that %s is not a function") {
+		if (typeof(value) != "function") return;
+		throw format(message, value.tostring());
+	},
+
 	is_class = function(value, message = "Failed to assert that %s is a class") {
 		if (typeof(value) == "class") return;
+		throw format(message, value.tostring());
+	},
+
+	is_not_class = function(value, message = "Failed to assert that %s is not a class") {
+		if (typeof(value) != "class") return;
 		throw format(message, value.tostring());
 	},
 
@@ -152,8 +207,18 @@ local do_test = function(fn) {
 		throw format(message, value.tostring());
 	},
 
+	is_not_instance = function(value, message = "Failed to assert that %s is not an instance") {
+		if (typeof(value) != "instance") return;
+		throw format(message, value.tostring());
+	},
+
 	is_generator = function(value, message = "Failed to assert that %s is a generator") {
 		if (typeof(value) == "generator") return;
+		throw format(message, value.tostring());
+	},
+
+	is_not_generator = function(value, message = "Failed to assert that %s is not a generator") {
+		if (typeof(value) != "generator") return;
 		throw format(message, value.tostring());
 	},
 
@@ -162,13 +227,28 @@ local do_test = function(fn) {
 		throw format(message, value.tostring());
 	},
 
+	is_not_userdata = function(value, message = "Failed to assert that %s is not userdata") {
+		if (typeof(value) != "userdata") return;
+		throw format(message, value.tostring());
+	},
+
 	is_thread = function(value, message = "Failed to assert that %s is a thread") {
 		if (typeof(value) == "thread") return;
 		throw format(message, value.tostring());
 	},
 
+	is_not_thread = function(value, message = "Failed to assert that %s is not a thread") {
+		if (typeof(value) != "thread") return;
+		throw format(message, value.tostring());
+	},
+
 	is_weakref = function(value, message = "Failed to assert that %s is a weakref") {
 		if (typeof(value) == "weakref") return;
+		throw format(message, value.tostring());
+	},
+
+	is_not_weakref = function(value, message = "Failed to assert that %s is not a weakref") {
+		if (typeof(value) != "weakref") return;
 		throw format(message, value.tostring());
 	},
 };
