@@ -152,7 +152,25 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
-	hazel.describe("hazel.is_integer", function() {
+	hazel.describe("hazel.is_(not)_typeof", function() {
+
+		local Foo = class {
+			constructor() {}
+			function _typeof() { return "foo" }
+		};
+
+		hazel.test("should be typeof", function() {
+			hazel.is_typeof(Foo(), "foo");
+			hazel.is_typeof(0x0012, "integer");
+			hazel.is_typeof(0.0012, "float");
+		});
+		hazel.test("should not be typeof", function() {
+			hazel.is_not_typeof(Foo(), "bar");
+		});
+
+	});
+
+	hazel.describe("hazel.is_(not)_integer", function() {
 		hazel.test("should be integer", function() {
 			hazel.is_integer(123);
 			hazel.is_integer(0x0012);
@@ -160,21 +178,23 @@ hazel.describe("hazel.nut", function() {
 			hazel.is_integer('w');
 		});
 		hazel.test("should not be integer", function() {
-			hazel.throws(function() { hazel.is_integer(1.0); });
-			hazel.throws(function() { hazel.is_integer(0.234); });
+			hazel.is_not_integer(1.0);
+			hazel.is_not_integer(0.234);
+			hazel.is_not_integer("2 acorns");
+			hazel.is_not_integer(false);
 		});
 	});
 
-	hazel.describe("hazel.is_float", function() {
+	hazel.describe("hazel.is_(not)_float", function() {
 		hazel.test("should be float", function() {
 			hazel.is_float(1.0);
 			hazel.is_float(0.234);
 		});
 		hazel.test("should not be float", function() {
-			hazel.throws(function() { hazel.is_float(123); });
-			hazel.throws(function() { hazel.is_float(0x0012); });
-			hazel.throws(function() { hazel.is_float(075); });
-			hazel.throws(function() { hazel.is_float('w'); });
+			hazel.is_not_float(123);
+			hazel.is_not_float(0x0012);
+			hazel.is_not_float(075);
+			hazel.is_not_float('w');
 		});
 	});
 
@@ -189,14 +209,14 @@ hazel.describe("hazel.nut", function() {
 				");
 		});
 		hazel.test("should not be string", function() {
-			hazel.throws(function() { hazel.is_string(123); });
-			hazel.throws(function() { hazel.is_string(0x0012); });
-			hazel.throws(function() { hazel.is_string(075); });
-			hazel.throws(function() { hazel.is_string('w'); });
+			hazel.is_not_string(123);
+			hazel.is_not_string(0x0012);
+			hazel.is_not_string(075);
+			hazel.is_not_string('w');
 		});
 	});
 
-	hazel.describe("hazel.is_null", function() {
+	hazel.describe("hazel.is_(not)_null", function() {
 		hazel.test("should be null", function() {
 			hazel.is_null(null);
 
@@ -204,9 +224,10 @@ hazel.describe("hazel.nut", function() {
 			hazel.is_null(var);
 		});
 		hazel.test("should not be null", function() {
-			hazel.throws(function() { hazel.is_null('w'); });
-			hazel.throws(function() { hazel.is_null([null]); });
-			hazel.throws(function() { hazel.is_null({}); });
+			hazel.is_not_null('w');
+			hazel.is_not_null({});
+			hazel.is_not_null([]);
+			hazel.is_not_null([null]);
 		});
 	});
 
@@ -216,6 +237,8 @@ hazel.describe("hazel.nut", function() {
 			hazel.is_bool(true);
 		});
 		hazel.test("should not be bool", function() {
+			hazel.is_not_bool(0);
+			hazel.is_not_bool(1);
 		});
 	});
 
@@ -225,30 +248,33 @@ hazel.describe("hazel.nut", function() {
 			hazel.is_table({ a = 10, b = function(a) { return a+1; }});
 		});
 		hazel.test("should not be table", function() {
+			hazel.is_not_table([]);
+			hazel.is_not_table([null]);
 		});
 	});
 
-	hazel.describe("hazel.is_array", function() {
+	hazel.describe("hazel.is_(not)_array", function() {
 		hazel.test("should be array", function() {
 			hazel.is_array([]);
 			hazel.is_array([null]);
 			hazel.is_array([1, 2, 3]);
 		});
 		hazel.test("should not be array", function() {
-			hazel.throws(function() { hazel.is_null([null]); });
-			hazel.throws(function() { hazel.is_null({}); });
+			hazel.is_not_array({});
 		});
 	});
 
-	hazel.describe("hazel.is_function", function() {
+	hazel.describe("hazel.is_(not)_function", function() {
+		class Foo{ constructor() {} };
 		hazel.test("should be function", function() {
 			hazel.is_function(function() {});
 		});
 		hazel.test("should not be function", function() {
+			hazel.is_not_function(Foo());
 		});
 	});
 
-	hazel.describe("hazel.is_class", function() {
+	hazel.describe("hazel.is_(not)_class", function() {
 
 		class Foo{ constructor() {} };
 
@@ -256,13 +282,13 @@ hazel.describe("hazel.nut", function() {
 			hazel.is_class(Foo);
 		});
 		hazel.test("should not be class", function() {
-			hazel.throws(function() { hazel.is_class(Foo()); });
-			hazel.throws(function() { hazel.is_class([]); });
-			hazel.throws(function() { hazel.is_class({}); });
+			hazel.is_not_class(Foo());
+			hazel.is_not_class([]);
+			hazel.is_not_class({});
 		});
 	});
 
-	hazel.describe("hazel.is_instance", function() {
+	hazel.describe("hazel.is_(not)_instance", function() {
 
 		class Foo{ constructor() {} };
 
@@ -270,13 +296,13 @@ hazel.describe("hazel.nut", function() {
 			hazel.is_instance(Foo());
 		});
 		hazel.test("should not be instance", function() {
-			hazel.throws(function() { hazel.is_instance(Foo); });
-			hazel.throws(function() { hazel.is_instance([]); });
-			hazel.throws(function() { hazel.is_instance({}); });
+			hazel.is_not_instance(Foo);
+			hazel.is_not_instance([]);
+			hazel.is_not_instance({});
 		});
 	});
 
-	hazel.describe("hazel.is_generator", function() {
+	hazel.describe("hazel.is_(not)_generator", function() {
 
 		function gen(n) {
 			for(local i=1;i<=n;i+=1) yield i;
@@ -287,7 +313,7 @@ hazel.describe("hazel.nut", function() {
 			hazel.is_generator(gen(10));
 		});
 		hazel.test("should not be generator", function() {
-			hazel.throws(function() { hazel.is_generator(gen); });
+			hazel.is_not_generator(gen);
 		});
 	});
 
@@ -298,7 +324,7 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
-	hazel.describe("hazel.is_thread", function() {
+	hazel.describe("hazel.is_(not)_thread", function() {
 
 		function coroutine() {}
 		local coro = ::newthread(coroutine);
@@ -307,10 +333,11 @@ hazel.describe("hazel.nut", function() {
 			hazel.is_thread(coro);
 		});
 		hazel.test("should not be thread", function() {
+			hazel.is_not_thread(coroutine);
 		});
 	});
 
-	hazel.describe("hazel.is_weakref", function() {
+	hazel.describe("hazel.is_(not)_weakref", function() {
 
 		local a = [1, 2, 3];
 
@@ -320,7 +347,7 @@ hazel.describe("hazel.nut", function() {
 		});
 		hazel.test("should not be weakref", function() {
 			local c = a;
-			hazel.throws(function() { hazel.is_weakref(c); });
+			hazel.is_not_weakref(c);
 		});
 	});
 });
