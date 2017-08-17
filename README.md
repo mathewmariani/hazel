@@ -80,14 +80,16 @@ hazel.at_least(5, 5);
 hazel.at_least(5, 4);
 ```
 
-#### hazel.between(value, a, b [, message])
+#### hazel.between(value, a, b [, inclusive, message])
 - @param { Mixed } a
 - @param { Mixed } b
+- @param { Boolean } [inclusive=false]
 - @param { String } message
 
 ```squirrel
 hazel.between(5, 0, 10);
 hazel.between(5, -10, 10);
+hazel.between(5, 5, 5, true);
 ```
 
 #### hazel.is_true(value, [, message])

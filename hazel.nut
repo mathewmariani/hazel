@@ -87,8 +87,8 @@ local do_test = function(fn) {
 		throw format(message, a.tostring(), b.tostring());
 	},
 
-	between = function(value, min, max, message = "Expected value to be between %s..%s, got %s") {
-		if (min <= value && value <= max) return;
+	between = function(value, min, max, inclusive = false, message = "Expected value to be between %s..%s, got %s") {
+		if (inclusive ? min <= value && value <= max : min < value && value < max) return;
 		throw format(message, min.tostring(), max.tostring(), value.tostring());
 	},
 

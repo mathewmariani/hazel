@@ -101,18 +101,32 @@ hazel.describe("hazel.nut", function() {
 	});
 
 	hazel.describe("hazel.between", function() {
-		hazel.test("should be hazel.between", function() {
+		hazel.test("should be hazel.between (exclusive)", function() {
 			hazel.between(5, 0, 10);
 			hazel.between(5, -10, 10);
 			hazel.between(-5, -10, 0);
 			hazel.between(5, 4.9, 5.1);
-			hazel.between(5, 5, 5);
 		});
-		hazel.test("should not be hazel.between", function() {
+		hazel.test("should not be hazel.between (exclusive)", function() {
+			hazel.throws(function() { hazel.between(5, 5, 5); });
 			hazel.throws(function() { hazel.between(11, 0, 10); });
 			hazel.throws(function() { hazel.between(-1, 0, 10); });
 			hazel.throws(function() { hazel.between(1, 0, -10); });
 			hazel.throws(function() { hazel.between(-11, 0, -10); });
+		});
+
+		hazel.test("should be hazel.between (inclusive)", function() {
+			hazel.between(5, -10, 10, true);
+			hazel.between(5, 0, 10, true);
+			hazel.between(-5, -10, 0, true);
+			hazel.between(5, 4.9, 5.1, true);
+			hazel.between(5, 5, 5, true);
+		});
+		hazel.test("should be hazel.between (inclusive)", function() {
+			hazel.throws(function() { hazel.between(11, 0, 10, true); });
+			hazel.throws(function() { hazel.between(-1, 0, 10, true); });
+			hazel.throws(function() { hazel.between(1, 0, -10, true); });
+			hazel.throws(function() { hazel.between(-11, 0, -10, true); });
 		});
 	});
 
