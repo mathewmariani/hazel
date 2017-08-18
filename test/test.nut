@@ -302,6 +302,20 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
+	hazel.describe("hazel.is_(not_)instance_of", function() {
+
+		class Foo{ constructor() {} }
+		class Bar{ constructor() {} }
+		local f = Foo();
+
+		hazel.test("should be instance of", function() {
+			hazel.is_instance_of(f, Foo);
+		});
+		hazel.test("should not be instance of", function() {
+			hazel.is_not_instance_of(f, Bar);
+		});
+	});
+
 	hazel.describe("hazel.is_(not_)generator", function() {
 
 		function gen(n) {

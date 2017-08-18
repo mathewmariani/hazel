@@ -379,6 +379,26 @@ class Foo{ constructor() {} };
 hazel.is_not_instance(Foo);
 ```
 
+#### hazel.is_instance_of(value, class [, message])
+- @param { Instance } value
+- @param { Class } class
+- @param { String } message
+
+```squirrel
+local f = Foo();
+hazel.is_instance_of(f, Foo);
+```
+
+#### hazel.is_not_instance_of(value, class [, message])
+- @param { Instance } value
+- @param { Class } class
+- @param { String } message
+
+```squirrel
+local f = Foo();
+hazel.is_instance_of(f, Bar);
+```
+
 #### hazel.is_generator(value [, message])
 - @param { Generator } value
 - @param { String } message

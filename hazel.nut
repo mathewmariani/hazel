@@ -212,6 +212,16 @@ local do_test = function(fn) {
 		throw format(message, value.tostring());
 	},
 
+	is_instance_of = function(value, instance, message = "Failed to assert that %s is an instance of %s") {
+		if (value instanceof instance) return;
+		throw format(message, value.tostring(), instance.tostring());
+	}
+
+	is_not_instance_of = function(value, instance, message = "Failed to assert that %s is an instance of %s") {
+		if (!(value instanceof instance)) return;
+		throw format(message, value.tostring(), instance.tostring());
+	}
+
 	is_generator = function(value, message = "Failed to assert that %s is a generator") {
 		if (typeof(value) == "generator") return;
 		throw format(message, value.tostring());
