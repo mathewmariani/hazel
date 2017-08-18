@@ -152,7 +152,7 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
-	hazel.describe("hazel.is_(not)_typeof", function() {
+	hazel.describe("hazel.is_(not_)typeof", function() {
 
 		local Foo = class {
 			constructor() {}
@@ -170,7 +170,7 @@ hazel.describe("hazel.nut", function() {
 
 	});
 
-	hazel.describe("hazel.is_(not)_integer", function() {
+	hazel.describe("hazel.is_(not_)integer", function() {
 		hazel.test("should be integer", function() {
 			hazel.is_integer(123);
 			hazel.is_integer(0x0012);
@@ -185,7 +185,7 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
-	hazel.describe("hazel.is_(not)_float", function() {
+	hazel.describe("hazel.is_(not_)float", function() {
 		hazel.test("should be float", function() {
 			hazel.is_float(1.0);
 			hazel.is_float(0.234);
@@ -216,7 +216,7 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
-	hazel.describe("hazel.is_(not)_null", function() {
+	hazel.describe("hazel.is_(not_)null", function() {
 		hazel.test("should be null", function() {
 			hazel.is_null(null);
 
@@ -253,7 +253,7 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
-	hazel.describe("hazel.is_(not)_array", function() {
+	hazel.describe("hazel.is_(not_)array", function() {
 		hazel.test("should be array", function() {
 			hazel.is_array([]);
 			hazel.is_array([null]);
@@ -264,7 +264,7 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
-	hazel.describe("hazel.is_(not)_function", function() {
+	hazel.describe("hazel.is_(not_)function", function() {
 		class Foo{ constructor() {} };
 		hazel.test("should be function", function() {
 			hazel.is_function(function() {});
@@ -274,7 +274,7 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
-	hazel.describe("hazel.is_(not)_class", function() {
+	hazel.describe("hazel.is_(not_)class", function() {
 
 		class Foo{ constructor() {} };
 
@@ -288,7 +288,7 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
-	hazel.describe("hazel.is_(not)_instance", function() {
+	hazel.describe("hazel.is_(not_)instance", function() {
 
 		class Foo{ constructor() {} };
 
@@ -302,7 +302,7 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
-	hazel.describe("hazel.is_(not)_generator", function() {
+	hazel.describe("hazel.is_(not_)generator", function() {
 
 		function gen(n) {
 			for(local i=1;i<=n;i+=1) yield i;
@@ -324,7 +324,7 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
-	hazel.describe("hazel.is_(not)_thread", function() {
+	hazel.describe("hazel.is_(not_)thread", function() {
 
 		function coroutine() {}
 		local coro = ::newthread(coroutine);
@@ -337,7 +337,7 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
-	hazel.describe("hazel.is_(not)_weakref", function() {
+	hazel.describe("hazel.is_(not_)weakref", function() {
 
 		local a = [1, 2, 3];
 
