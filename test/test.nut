@@ -140,7 +140,20 @@ hazel.describe("hazel.nut", function() {
 			hazel.throws(function() { hazel.length_of("foobar", 5); });
 			hazel.throws(function() { hazel.length_of(function() {}, 5); });
 		});
-	})
+	});
+
+	hazel.describe("hazel.is_(not_)empty", function() {
+		hazel.test("should be empty", function() {
+			hazel.is_empty({});
+			hazel.is_empty([]);
+			hazel.is_empty("");
+		});
+		hazel.test("should not be empty", function() {
+			hazel.is_not_empty([1, 2, 3]);
+			hazel.is_not_empty("foobar");
+			hazel.is_not_empty([null]);
+		});
+	});
 
 	hazel.describe("hazel.is_true", function() {
 		hazel.test("should be true", function() {

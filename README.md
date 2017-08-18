@@ -111,8 +111,8 @@ hazel.between(5, -10, 10);
 hazel.between(5, 5, 5, true);
 ```
 
-#### hazel.length_of(object, length [, message])
-- @param { Mixed } object
+#### hazel.length_of(target, length [, message])
+- @param { Mixed } target
 - @param { Integer } length
 - @param { String } message
 
@@ -121,6 +121,30 @@ Determined by `len()` method.
 ```squirrel
 hazel.length_of([1, 2, 3], 3);
 hazel.length_of("foobar", 6);
+```
+
+#### hazel.is_empty(target [, message])
+- @param { Mixed } target
+- @param { String } message
+
+Determined by `len()` method.
+
+```squirrel
+hazel.is_empty({});
+hazel.is_empty([]);
+hazel.is_empty("");
+```
+
+#### hazel.is_not_empty(target [, message])
+- @param { Mixed } target
+- @param { String } message
+
+Determined by `len()` method.
+
+```squirrel
+hazel.is_not_empty([1, 2, 3]);
+hazel.is_not_empty("foobar");
+hazel.is_not_empty([null]);
 ```
 
 #### hazel.is_true(value, [, message])
