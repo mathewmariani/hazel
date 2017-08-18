@@ -92,6 +92,11 @@ local do_test = function(fn) {
 		throw format(message, min.tostring(), max.tostring(), value.tostring());
 	},
 
+	length_of = function(object, length, inclusive = false, message = "Expected %s to be length of %s") {
+		if (object.len() == length) return;
+		throw format(message, min.tostring(), max.tostring(), value.tostring());
+	},
+
 	is_true = function(value, message = "Failed to assert that %s is true") {
 		if (value) return;
 		throw format(message, value);

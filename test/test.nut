@@ -130,6 +130,18 @@ hazel.describe("hazel.nut", function() {
 		});
 	});
 
+	hazel.describe("hazel.length_of", function() {
+		hazel.test("should be length of", function() {
+			hazel.length_of([1, 2, 3], 3);
+			hazel.length_of("foobar", 6);
+		});
+		hazel.test("should not be length of", function() {
+			hazel.throws(function() { hazel.length_of([1, 2, 3], 5); });
+			hazel.throws(function() { hazel.length_of("foobar", 5); });
+			hazel.throws(function() { hazel.length_of(function() {}, 5); });
+		});
+	})
+
 	hazel.describe("hazel.is_true", function() {
 		hazel.test("should be true", function() {
 			hazel.is_true(true);

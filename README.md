@@ -111,6 +111,18 @@ hazel.between(5, -10, 10);
 hazel.between(5, 5, 5, true);
 ```
 
+#### hazel.length_of(object, length [, message])
+- @param { Mixed } object
+- @param { Integer } length
+- @param { String } message
+
+Determined by `len()` method.
+
+```squirrel
+hazel.length_of([1, 2, 3], 3);
+hazel.length_of("foobar", 6);
+```
+
 #### hazel.is_true(value, [, message])
 - @param { Boolean } value
 - @param { String } message
