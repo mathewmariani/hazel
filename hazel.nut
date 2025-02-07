@@ -109,7 +109,7 @@ local do_test = function(fn) {
 
 	is_true = function(value, message = "Failed to assert that %s is true") {
 		if (value) return;
-		throw format(message, value);
+		throw format(message, value.tostring());
 	},
 
 	is_false = function(value, message = "Failed to assert that %s is false") {
