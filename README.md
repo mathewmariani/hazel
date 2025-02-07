@@ -1,3 +1,5 @@
+Personal fork for small adjustments.
+
 # hazel.nut
 
 hazel.nut is small Squirrel script for automated TDD style unit testing inspired by the Chai.js API.
